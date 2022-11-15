@@ -1,4 +1,3 @@
-
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
@@ -23,7 +22,7 @@ set cursorline
 " Highlight cursor line underneath the cursor vertically.
 "set cursorcolumn
 
-" Set shift width to 4 spaces.
+" Set shift width to 3 spaces.
 set shiftwidth=3
 
 " Set tab width to 4 columns.
@@ -39,7 +38,7 @@ set nobackup
 set scrolloff=10
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
-set nowrap
+" set nowrap
 
 " While searching though a file incrementally highlight matching characters as you type.
 set incsearch
@@ -75,6 +74,46 @@ set wildmode=list:longest
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+" Make sure vim-plug is installed on launch.
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin()
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'https://git.sr.ht/~willdurand/srht.vim'
+
+Plug 'vim-test/vim-test'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'tpope/vim-surround'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'prettier/vim-prettier'
+Plug 'hashivim/vim-terraform'
+Plug 'morhetz/gruvbox'
+Plug 'tyrannicaltoucan/vim-deep-space'
+
+call plug#end()
+
+set background=dark
+set termguicolors
+colorscheme deep-space
 
 " MAPPINGS --------------------------------------------------------------- {{{
 
@@ -168,10 +207,10 @@ augroup END
 if has('gui_running')
 
     " Set the background tone.
-    set background=dark
+    " set background=dark
 
     " Set the color scheme.
-    colorscheme molokai
+    " colorscheme molokai
 
     " Set a custom font you have installed on your computer.
     " Syntax: <font_name>\ <weight>\ <size>
@@ -224,4 +263,5 @@ set statusline+=%=
 set laststatus=2
 
 " }}}
+
 
