@@ -1,12 +1,24 @@
+# Hacker News
 https://news.ycombinator.com/rss
 
+# Reddit: Programming
 https://reddit.com/r/rust.rss
+
+# Reddit: Misc
 https://reddit.com/r/amateurradio.rss
 
-https://archlinux.org/feeds/news/
+# Reddit: Computers
+https://reddit.com/r/vintagecomputing.rss
+https://reddit.com/r/retrocomputing.rss
+https://reddit.com/r/homebrewcomputer.rss
 
+# Blogs
 https://www.righto.com/feeds/posts/default
 https://feeds.feedburner.com/TechTinkering
+http://feeds.feedburner.com/BigMessOWires
 https://blog.wirelessmoves.com/feed
 
 https://kg5key.com/feed.xml
+
+# Misc
+https://archlinux.org/feeds/news/
